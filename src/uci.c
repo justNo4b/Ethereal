@@ -395,6 +395,8 @@ void uciPosition(char *str, Board *board, int chess960) {
 
 void uciReport(Thread *threads, int alpha, int beta, int value) {
 
+    return;
+
     // Gather all of the statistics that the UCI protocol would be
     // interested in. Also, bound the value passed by alpha and
     // beta, since Ethereal uses a mix of fail-hard and fail-soft
@@ -436,6 +438,8 @@ void uciReport(Thread *threads, int alpha, int beta, int value) {
 }
 
 void uciReportCurrentMove(Board *board, uint16_t move, int currmove, int depth) {
+
+    return;
 
     char moveStr[6];
     moveToString(move, moveStr, board->chess960);

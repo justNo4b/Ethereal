@@ -153,11 +153,15 @@ void runEvalBook(int argc, char **argv) {
     initTT(megabytes);
 
     while ((fgets(line, 256, book)) != NULL) {
+
         limits.start = getRealTime();
         boardFromFEN(&board, line, 0);
         getBestMove(threads, &board, &limits, &best, &ponder);
         resetThreadPool(threads); clearTT();
-        printf("FEN: %s", line);
+
+        if (strstr(line, "[1.0]")) printf("[1.0]\n");
+        if (strstr(line, "[0.0]")) printf("[0.0]\n");
+        if (strstr(line, "[0.5]")) printf("[0.5]\n");
     }
 
     printf("Time %dms\n", (int)(getRealTime() - start));

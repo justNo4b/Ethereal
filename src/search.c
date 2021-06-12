@@ -96,6 +96,16 @@ void getBestMove(Thread *threads, Board *board, Limits *limits, uint16_t *best, 
     // The main thread will update SearchInfo with results
     *best = info.bestMoves[info.depth];
     *ponder = info.ponderMoves[info.depth];
+
+    /**********************************************************/
+
+    for (int i = 0; i < threads[0].pv.length; i++)
+        apply(&threads[0], &threads[0].board, threads[0].pv.line[i]);
+
+    char fen[256]; boardToFEN(&threads[0].board, fen);
+    printf("%s ", fen);
+
+    /**********************************************************/
 }
 
 void* iterativeDeepening(void *vthread) {
