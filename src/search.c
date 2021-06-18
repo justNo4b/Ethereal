@@ -304,6 +304,10 @@ int search(Thread *thread, PVariation *pv, int alpha, int beta, int depth) {
         }
     }
 
+    if (depth >= 5 && !ttHit){
+        depth -= 1;
+    }
+
     // Step 6. Initialize flags and values used by pruning and search methods
 
     // We can grab in check based on the already computed king attackers bitboard
@@ -402,10 +406,6 @@ int search(Thread *thread, PVariation *pv, int alpha, int beta, int depth) {
             // Probcut failed high verifying the cutoff
             if (value >= rBeta) return value;
         }
-    }
-
-    if (depth >= 5 && !ttHit){
-        depth -= 1;
     }
 
     // Step 11. Initialize the Move Picker and being searching through each
