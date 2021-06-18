@@ -404,7 +404,7 @@ int search(Thread *thread, PVariation *pv, int alpha, int beta, int depth) {
         }
     }
 
-    if (depth >= 5 && !ttHit){
+    if (depth >= 4 && !ttHit){
         depth -= 1;
     }
 
